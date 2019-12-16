@@ -1,0 +1,6 @@
+com\example\cloud\common\test\MapValueComparator.class
+com\example\cloud\common\CloudCommonApplicationTests.class
+com\example\cloud\common\test\JsonTest.class
+com\example\cloud\common\test\DateTest.class
+com\example\cloud\common\test\NumberTest.class
+com\example\cloud\common\test\MemberTest.class
