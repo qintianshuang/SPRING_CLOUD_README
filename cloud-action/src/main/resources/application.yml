@@ -8,6 +8,34 @@ spring:
   application:
     name: cloud-app #服务名称
     ribbon.eureka.enable: true
-#  devtools:
-#        restart:
-#          enabled: true
+  datasource:
+    dynamic:
+      primary: MYSQL_DB #设置默认的数据源或者数据源组,默认值即为master
+      datasource:
+        MYSQL_DB:
+          username: root
+          password: 716622
+          driver-class-name: com.mysql.jdbc.Driver
+          url: jdbc:mysql://localhost:3306/myemployees?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&characterEncoding=UTF8
+        ORACLE_DB:
+          username: wscl
+          password: 716622
+          driver-class-name: oracle.jdbc.driver.OracleDriver
+          url: jdbc:oracle:thin:@127.0.0.1:1521/ADMIN.EMPLOYEE
+          max-idle: 10
+          max-wait: 10000
+          min-idle: 5
+          initial-size: 5
+          defaultAutoCommit: true
+          maxAge: 60000
+          testOnBorrow: true
+          testOnReturn: true
+          timeBetweenEvictionRunsMillis: 60000
+          minEvictableIdleTimeMillis: 300000
+          validationQuery: SELECT 1 FROM DUAL
+          testWhileIdle: true
+          poolPreparedStatements: true
+          filters: stat,wall,log4j
+          maxPoolPreparedStatementPerConnectionSize: 20
+          useGlobalDataSourceStat: true
+          connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500

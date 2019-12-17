@@ -1,8 +1,8 @@
 package com.example.cloud.feign.controller;
 
+import com.example.cloud.common.bean.Employee;
 import com.example.cloud.common.config.Logger;
 import com.example.cloud.feign.feign.FeignEmployeeUI;
-import com.example.cloud.web.bean.employee.Employee;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

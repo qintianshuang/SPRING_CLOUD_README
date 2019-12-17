@@ -1,7 +1,7 @@
 package com.example.cloud.app.controller;
 
 import com.example.cloud.common.config.Logger;
-import com.example.cloud.common.io.Employee;
+import com.example.cloud.common.bean.Employee;
 import com.example.cloud.service.service.IEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

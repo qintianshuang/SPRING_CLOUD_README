@@ -1,7 +1,5 @@
 package com.example.cloud.feign.feign;
-
-import com.example.cloud.web.bean.employee.Employee;
-import com.example.cloud.web.bean.employee.ExpressBean;
+import com.example.cloud.common.bean.Employee;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
