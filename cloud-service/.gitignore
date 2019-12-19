@@ -27,3 +27,8 @@ HELP.md
 
 ### VS Code ###
 .vscode/
+/src/main/java/com/example/cloud/server/common/constants/
+/src/main/java/com/example/cloud/server/common/vo/
+/src/main/java/com/example/cloud/server/service/sb/
+/src/main/java/com/example/cloud/server/common/build/
+/src/main/java/com/example/cloud/server/common/enums/
