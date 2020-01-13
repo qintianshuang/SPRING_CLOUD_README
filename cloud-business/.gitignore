@@ -30,3 +30,4 @@ build/
 ### VS Code ###
 .vscode/
 /cloud-business.iml
+!/cloud-business.iml

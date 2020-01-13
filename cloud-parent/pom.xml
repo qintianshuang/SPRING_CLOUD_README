@@ -38,7 +38,7 @@
         <feign-core.version>10.4.0</feign-core.version>
         <ribbon-core.version>2.7.17</ribbon-core.version>
         <slf4j-api.version>1.7.25</slf4j-api.version>
-        <jwt.jwt.version>3.2.0</jwt.jwt.version>
+        <jwt.version>3.2.0</jwt.version>
         <jjwt.version>0.7.0</jjwt.version>
     </properties>
     <dependencyManagement>
