@@ -14,7 +14,7 @@ public class Employee implements Serializable {
     private String empName;
 
     //年龄
-    private int age;
+    private String age;
 
     //身份证号码
     private String identityCard;
@@ -35,7 +35,7 @@ public class Employee implements Serializable {
         super();
     }
 
-    public Employee(String empNo, String empName, int age, String identityCard, String liveAddress, String familyAddress, String phone, String email) {
+    public Employee(String empNo, String empName, String age, String identityCard, String liveAddress, String familyAddress, String phone, String email) {
         this.empNo = empNo;
         this.empName = empName;
         this.age = age;
@@ -62,11 +62,11 @@ public class Employee implements Serializable {
         this.empName = empName;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 
@@ -108,19 +108,5 @@ public class Employee implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "empNo='" + empNo + '\'' +
-                ", empName='" + empName + '\'' +
-                ", age=" + age +
-                ", identityCard='" + identityCard + '\'' +
-                ", liveAddress='" + liveAddress + '\'' +
-                ", familyAddress='" + familyAddress + '\'' +
-                ", phone='" + phone + '\'' +
-                ", email='" + email + '\'' +
-                '}';
     }
 }

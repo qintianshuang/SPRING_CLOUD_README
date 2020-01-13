@@ -116,6 +116,35 @@ public class RedisUtil {
     }
 
     /**
+     * (存入redis数据)
+     *
+     * @param @param key
+     * @param @param value
+     *               //     * @param index 具体数据库
+     * @return void
+     * @throws
+     * @Title: setV
+     */
+    public <V> void setValueExpireKey(String key, V value,int seconds) {
+        String json = JSON.toJSONString(value);
+        Jedis jedis = null;
+        try {
+            jedis = jedisPool.getResource();
+            jedis.set(key, json);
+            expireKey(key,seconds);
+        } catch (Exception e) {
+            log.error("setV初始化jedis异常：" + e);
+            if (jedis != null) {
+                //jedisPool.returnBrokenResource(jedis);
+                jedis.close();
+            }
+        } finally {
+            closeJedis(jedis);
+        }
+
+    }
+
+    /**
      *
      * getV(获取redis数据信息)
      * @Title: getV

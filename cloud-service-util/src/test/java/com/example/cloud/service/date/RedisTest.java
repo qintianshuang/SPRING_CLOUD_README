@@ -1,6 +1,6 @@
 package com.example.cloud.service.date;
 
-import com.example.cloud.service.service.IEmployeeService;
+import com.example.cloud.service.service.employee.IEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 //import com.example.cloud.service.util.RedisUtil;

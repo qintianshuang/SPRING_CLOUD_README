@@ -11,6 +11,7 @@
     <artifactId>cloud-web-util</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>cloud-web-util</name>
+    <packaging>jar</packaging>
     <description>Demo project for Spring Boot</description>
 
     <properties>

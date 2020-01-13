@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
  * 用于外部发起的请求
  * 具有软负载均衡功能，轮询机制
  */
-@FeignClient(value = "cloud-app")
+@FeignClient(value = "cloud-action")
 public interface FeignPoiUI {
 
     @GetMapping("/downloadFile")

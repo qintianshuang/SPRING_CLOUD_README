@@ -7,10 +7,10 @@
         <artifactId>cloud-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <groupId>com.example.cloud</groupId>
     <artifactId>cloud-center</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>cloud-center</name>
+    <packaging>jar</packaging>
     <description>Demo project for Spring Boot</description>
 
     <properties>

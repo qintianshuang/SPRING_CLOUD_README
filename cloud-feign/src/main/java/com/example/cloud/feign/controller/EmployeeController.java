@@ -30,7 +30,7 @@ public class EmployeeController {
     @PostMapping(value = "/creatEmployeeList", consumes = "application/json")
     public String creatEmployeeList() {
         List<Employee> employeeList = new ArrayList<>();
-        employeeList.add(new Employee("", "小红", 12, "420528199901172431", "湖北省宜昌市长阳县", "深圳市宝安区新安一路晶美花园", "18665892257", "2065114232@qq.com"));
+        employeeList.add(new Employee("", "小红", "12", "420528199901172431", "湖北省宜昌市长阳县", "深圳市宝安区新安一路晶美花园", "18665892257", "2065114232@qq.com"));
         return feignUI.creatEmployeeList(employeeList);
     }
 

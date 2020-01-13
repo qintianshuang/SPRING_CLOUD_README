@@ -65,8 +65,7 @@ public class PoiUtils {
      */
     public static void outExcel(HttpServletResponse response, String fileName, Workbook workBook) throws IOException {
 
-        Sheet sheet1 = workBook.createSheet("sheet1");
-
+        workBook.createSheet("sheet1");
         Row row = workBook.getSheet("sheet1").createRow(0);    //创建第一行
         for (int i = 0; i < 10; i++) {
             Cell cell = row.createCell(i);
