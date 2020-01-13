@@ -1,0 +1,5 @@
+com\example\cloud\company\num\NumberTest.class
+com\example\cloud\company\xml\FileTest.class
+com\example\cloud\company\CloudCompanyServiceApplicationTests.class
+com\example\cloud\company\xml\XmlTest.class
+com\example\cloud\company\json\Jsontest.class
