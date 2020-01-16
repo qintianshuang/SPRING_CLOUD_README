@@ -30,13 +30,21 @@ public class EmployeeController {
     @Qualifier("empService")
     private IEmployeeService empService;
 
+
+    /***
+     * page=1&limit=20&sort=%2Bid
+     * @param name
+     * @return
+     */
     @ApiOperation(value = "获取用户信息", notes = "获取用户信息", produces = "application/json")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "name", value = "姓名", dataType = "string", paramType = "query", defaultValue = "小红")
+            @ApiImplicitParam(name = "name", value = "姓名", dataType = "string", paramType = "query", defaultValue = "小红"),
+            @ApiImplicitParam(name = "page", value = "页数", dataType = "in", paramType = "query", defaultValue = "小红"),
+            @ApiImplicitParam(name = "limit", value = "条数", dataType = "string", paramType = "query", defaultValue = "小红")
     })
-    @GetMapping(value = "/queryEmployeeByName")
-    public List<Employee> queryEmployeeByName(@RequestParam String name) {
-        List<Employee> employees = empService.queryEmployeeByName(name);
+    @GetMapping(value = "/queryEmpByName")
+    public List<Employee> queryEmpByName(@RequestParam String name,@RequestParam String page,@RequestParam String limit) {
+        List<Employee> employees = empService.queryEmpByName(name);
         return employees;
     }
 }

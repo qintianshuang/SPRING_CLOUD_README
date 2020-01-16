@@ -8,7 +8,6 @@ import com.example.cloud.service.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -29,11 +28,8 @@ public class EmployeeServiceImpl implements IEmployeeService {
      * @return
      */
     @Override
-    public List<Employee> queryEmployeeByName(String empName) {
-        if (StringUtils.isEmpty(empName)){
-            return null;
-        }
-        List<Employee> employeeList = employeeDao.queryEmployeeByName(empName);
+    public List<Employee> queryEmpByName(String empName) {
+        List<Employee> employeeList = employeeDao.queryEmpByName(empName);
         return employeeList;
     }
 }

@@ -2,9 +2,9 @@ package com.example.cloud.app.controller.sb.xgm;
 
 import com.example.cloud.common.config.Logger;
 import com.example.cloud.common.util.PoiUtils;
-import com.example.cloud.server.service.sb.common.ISbJcjyBusiness;
-import com.example.cloud.server.service.sb.xgm.IXgmSbhyfpxzdrService;
-import com.example.cloud.server.service.sb.xgm.IZzsXgmhdxxService;
+import com.example.cloud.company.service.sb.common.ISbJcjyBusiness;
+import com.example.cloud.company.service.sb.xgm.IXgmSbhyfpxzdrService;
+import com.example.cloud.company.service.sb.xgm.IZzsXgmhdxxService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;

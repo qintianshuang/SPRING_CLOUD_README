@@ -13,5 +13,5 @@ public interface IEmployeeDao extends IService<EmployeePO> {
      * @param empName
      * @return
      */
-    List<Employee> queryEmployeeByName(String empName);
+    List<Employee> queryEmpByName(String empName);
 }

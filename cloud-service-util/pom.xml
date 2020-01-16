@@ -68,6 +68,14 @@
             <artifactId>jedis</artifactId>
         </dependency>
         <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.example.cloud</groupId>
             <artifactId>cloud-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>

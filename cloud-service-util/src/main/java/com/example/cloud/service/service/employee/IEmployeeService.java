@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface IEmployeeService {
 
-    List<Employee> queryEmployeeByName(String name);
+    List<Employee> queryEmpByName(String name);
 }
