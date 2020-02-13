@@ -1,6 +1,8 @@
 package com.example.cloud.server.service.user.impl;
 
 import com.example.cloud.common.bean.User;
+import com.example.cloud.common.exception.BusinessException;
+import com.example.cloud.common.exception.CommonErrorCode;
 import com.example.cloud.db.dao.user.IUserDao;
 import com.example.cloud.service.service.user.IUserService;
 import org.apache.log4j.Logger;
@@ -32,10 +34,10 @@ public class UserServiceImpl implements IUserService {
     public User findUser(User user) {
         User userinfo = userDao.findUser(user.getUsername());
         if (userinfo == null){
-            throw new RuntimeException("用户不存在！");
+            throw new BusinessException(CommonErrorCode.PARAM_ERROR.getCode(),"用户不存在！");
         }
         if (!userinfo.getPassword().equals(user.getPassword())){
-            throw new RuntimeException("用户密码输入有误！");
+            throw new BusinessException(CommonErrorCode.PARAM_ERROR.getCode(),"用户密码输入有误！");
         }
         return userinfo;
     }

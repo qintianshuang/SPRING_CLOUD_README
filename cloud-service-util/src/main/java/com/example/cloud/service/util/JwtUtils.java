@@ -41,8 +41,6 @@ public class JwtUtils {
             //生成签发人
             String subject = user.getUsername();
 
-
-
             //下面就是在为payload添加各种标准声明和私有声明了
             //这里其实就是new一个JwtBuilder，设置jwt的body
             JwtBuilder builder = Jwts.builder()

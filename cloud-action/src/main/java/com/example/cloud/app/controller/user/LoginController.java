@@ -4,8 +4,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.cloud.common.bean.Role;
 import com.example.cloud.common.bean.User;
 import com.example.cloud.common.config.Logger;
-import com.example.cloud.service.config.token.CheckToken;
 import com.example.cloud.service.config.token.LoginToken;
+import com.example.cloud.service.config.token.LogoutToken;
 import com.example.cloud.service.service.user.IUserService;
 import com.example.cloud.service.util.JwtUtils;
 import io.swagger.annotations.Api;
@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
@@ -83,6 +84,7 @@ public class LoginController {
      * @return 成功返回token ，失败返回错误信息
      * @date 2019/7/31 14:09
      */
+    @ApiOperation(value = "用户登录", notes = "用户登录", produces = "application/json")
     @LoginToken
     @PostMapping("/login")
     public Object login(@RequestBody @Valid User user) {
@@ -91,7 +93,7 @@ public class LoginController {
             return "params is not null";
         }
         User queryUser = userService.findUser(user);
-        // 生成一个jwt的token    6000000L是过期时间
+        // 生成一个jwt的token，6000000L是过期时间
         String token = JwtUtils.createJWT(6000000L, queryUser);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("token", token);
@@ -102,27 +104,28 @@ public class LoginController {
     /**
      * 登录方法
      *
-     * @param user 用户信息
+     * @param
      * @return 成功返回token ，失败返回错误信息
      * @date 2019/7/31 14:09
      */
-    @LoginToken
+    @ApiOperation(value = "用户注销登录", notes = "用户注销登录", produces = "application/json")
+    @LogoutToken
     @PostMapping("/logout")
-    public Object logout() {
+    public Object logout(HttpServletRequest httpServletRequest) {
         // 校验参数
         return "success";
     }
 
-    /**
-     * 测试token校验方法
-     *
-     * @return 返回Hello World!
-     * @date 2019/7/31 14:13
-     */
-    @GetMapping("/hello")
-    @CheckToken
-    public String hello() {
-        return "Hello World!";
-    }
+//    /**
+//     * 测试token校验方法
+//     *
+//     * @return 返回Hello World!
+//     * @date 2019/7/31 14:13
+//     */
+//    @GetMapping("/hello")
+//    @CheckToken
+//    public String hello() {
+//        return "Hello World!";
+//    }
 }
 

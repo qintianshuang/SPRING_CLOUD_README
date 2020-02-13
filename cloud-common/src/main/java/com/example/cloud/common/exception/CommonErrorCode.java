@@ -1,4 +1,4 @@
-package com.example.cloud.web.common.exception.error;
+package com.example.cloud.common.exception;
 
 import org.springframework.http.HttpStatus;
 
@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
  */
 public enum CommonErrorCode {
 
+  LOGIN_FAILURE("CLOUD-LOGIN-FAILURE","哎呀，登陆失效"),
   /**
    * 404 Web 服务器找不到您所请求的文件或脚本。请检查URL 以确保路径正确。
    */
@@ -52,7 +53,7 @@ public enum CommonErrorCode {
    * 业务异常
    */
   BUSINESS_ERROR("CLOUD-400", "业务异常"),
-  
+
   /**
    * 非法请求
    */

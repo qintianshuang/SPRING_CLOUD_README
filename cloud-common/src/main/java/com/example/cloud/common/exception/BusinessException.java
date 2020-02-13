@@ -1,8 +1,5 @@
-package com.example.cloud.web.common.exception.category;
+package com.example.cloud.common.exception;
 
-
-import com.example.cloud.web.common.exception.error.CommonErrorCode;
-import com.example.cloud.web.common.exception.error.details.BusinessErrorCode;
 
 /**
  * {@link RuntimeException} 通用业务异常
@@ -25,7 +22,7 @@ public class BusinessException extends RuntimeException {
     super(errorCode.getMessage());
     this.code = errorCode.getCode();
   }
-  
+
   /**
    * 使用CommonErrorCode枚举传参
    *

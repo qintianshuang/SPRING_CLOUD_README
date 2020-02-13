@@ -32,4 +32,19 @@ public class CompanyDateUtil {
         log.info("当前所在月最后一天(公司的方法)为【" + lastDateStr + "】");
         return lastDateStr;
     }
+
+    public static boolean isDateBefore(String date, String formatType) throws Exception, ParseException {
+        if (!StringKit.isBlank(new String[]{date}) && !StringKit.isBlank(new String[]{formatType})) {
+            Date systemDate = new Date();
+            DateFormat df = new SimpleDateFormat(formatType);
+            String result = df.format(df.parse(date));
+            if (date.startsWith(result)) {
+                return df.format(systemDate).equals(df.format(df.parse(date))) ? false : systemDate.after(df.parse(date));
+            } else {
+                throw new IllegalArgumentException(String.format("错误的日期参数：%1$s，不满足[%2$s]格式要求", date, formatType));
+            }
+        } else {
+            return false;
+        }
+    }
 }

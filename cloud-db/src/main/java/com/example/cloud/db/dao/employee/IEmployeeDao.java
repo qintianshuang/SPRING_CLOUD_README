@@ -14,4 +14,12 @@ public interface IEmployeeDao extends IService<EmployeePO> {
      * @return
      */
     List<Employee> queryEmpByName(String empName);
+
+    void saveEmployee(Employee employee);
+
+    void deleteEmployee(String empNo);
+
+    List<Employee> queryEmpByCardOrPhone(String identityCard,String phone);
+
+    void editEmployee(Employee employee);
 }

@@ -1,8 +1,8 @@
 package com.example.cloud.web.common.exception;
 
+import com.example.cloud.common.exception.BusinessException;
+import com.example.cloud.common.exception.CommonErrorCode;
 import com.example.cloud.web.common.Result;
-import com.example.cloud.web.common.exception.category.BusinessException;
-import com.example.cloud.web.common.exception.error.CommonErrorCode;
 import com.netflix.client.ClientException;
 import feign.FeignException;
 import org.slf4j.Logger;
@@ -115,7 +115,7 @@ public class GlobalDefaultExceptionHandler {
     @ExceptionHandler(value = BusinessException.class)
     public Result handlerBusinessException(BusinessException e) {
         outPutError(BusinessException.class, CommonErrorCode.BUSINESS_ERROR, e);
-        return Result.ofFail(Integer.parseInt(e.getCode()), e.getMessage());
+        return Result.ofFail(e.getCode(), e.getMessage());
     }
 
     /**
@@ -126,7 +126,7 @@ public class GlobalDefaultExceptionHandler {
         outPutError(HttpMessageNotReadableException.class, CommonErrorCode.PARAM_ERROR, e);
         String msg = String.format("%s : 错误详情( %s )", CommonErrorCode.PARAM_ERROR.getMessage(),
                 e.getRootCause().getMessage());
-        return Result.ofFail(Integer.parseInt(CommonErrorCode.PARAM_ERROR.getCode()), msg);
+        return Result.ofFail(CommonErrorCode.PARAM_ERROR.getCode(), msg);
     }
 
     /**
@@ -145,10 +145,10 @@ public class GlobalDefaultExceptionHandler {
 
         if (constraintViolations.isEmpty()) {
             log.error("validExceptionHandler error fieldErrors is empty");
-            Result.ofFail(Integer.parseInt(CommonErrorCode.BUSINESS_ERROR.getCode()), "");
+            Result.ofFail(CommonErrorCode.BUSINESS_ERROR.getCode(), "");
         }
 
-        return Result.ofFail(Integer.parseInt(CommonErrorCode.PARAM_ERROR.getCode()), smg);
+        return Result.ofFail(CommonErrorCode.PARAM_ERROR.getCode(), smg);
     }
 
     /**
@@ -180,11 +180,11 @@ public class GlobalDefaultExceptionHandler {
 
         if (fieldErrors.isEmpty()) {
             log.error("validExceptionHandler error fieldErrors is empty");
-            Result.ofFail(Integer.parseInt(CommonErrorCode.BUSINESS_ERROR.getCode()), "");
+            Result.ofFail(CommonErrorCode.BUSINESS_ERROR.getCode(), "");
         }
 
         return Result
-                .ofFail(Integer.parseInt(CommonErrorCode.PARAM_ERROR.getCode()), fieldErrors.get(0).getDefaultMessage());
+                .ofFail(CommonErrorCode.PARAM_ERROR.getCode(), fieldErrors.get(0).getDefaultMessage());
     }
 
     public void outPutError(Class errorType, Enum secondaryErrorType, Throwable throwable) {

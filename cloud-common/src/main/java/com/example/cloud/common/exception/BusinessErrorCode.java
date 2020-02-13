@@ -1,4 +1,4 @@
-package com.example.cloud.web.common.exception.error.details;
+package com.example.cloud.common.exception;
 
 /**
  * 业务通用异常枚举

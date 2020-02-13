@@ -3,7 +3,7 @@ package com.example.cloud.web.common;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.example.cloud.web.common.exception.error.CommonErrorCode;
+import com.example.cloud.common.exception.CommonErrorCode;
 
 import java.io.Serializable;
 
@@ -34,7 +34,7 @@ public class Result<T> implements Serializable {
   /**
    * 错误码
    */
-  private int code;
+  private String code;
 
   /**
    * 错误描述
@@ -44,19 +44,19 @@ public class Result<T> implements Serializable {
   public static Result ofSuccess() {
     Result result = new Result();
     result.success = true;
-    result.code = 20000;
+    result.code = "20000";
     return result;
   }
 
   public static Result ofSuccess(Object data) {
     Result result = new Result();
     result.success = true;
-    result.code = 20000;
+    result.code = "20000";
     result.setData(data);
     return result;
   }
 
-  public static Result ofFail(int code, String msg) {
+  public static Result ofFail(String code, String msg) {
     Result result = new Result();
     result.success = false;
     result.code = code;
@@ -64,7 +64,7 @@ public class Result<T> implements Serializable {
     return result;
   }
 
-  public static Result ofFail(int code, String msg, Object data) {
+  public static Result ofFail(String code, String msg, Object data) {
     Result result = new Result();
     result.success = false;
     result.code = code;
@@ -76,7 +76,7 @@ public class Result<T> implements Serializable {
   public static Result ofFail(CommonErrorCode resultEnum) {
     Result result = new Result();
     result.success = false;
-    result.code = Integer.parseInt(resultEnum.getCode());
+    result.code = resultEnum.getCode();
     result.message = resultEnum.getMessage();
     return result;
   }
@@ -118,11 +118,11 @@ public class Result<T> implements Serializable {
     this.data = data;
   }
 
-  public int getCode() {
+  public String getCode() {
     return code;
   }
 
-  public void setCode(int code) {
+  public void setCode(String code) {
     this.code = code;
   }
 

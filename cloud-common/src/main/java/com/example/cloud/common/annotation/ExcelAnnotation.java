@@ -51,6 +51,16 @@ public @interface ExcelAnnotation {
      * 提示信息
      */
     public String prompt() default "";
+
+    /**
+     * 宽度
+     */
+    public int width() default 200;
+
+    /**
+     * 长度
+     */
+    public int heigth() default 200;
 }
 
 

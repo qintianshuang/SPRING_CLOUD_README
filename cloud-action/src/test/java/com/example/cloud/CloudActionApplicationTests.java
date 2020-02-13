@@ -5,7 +5,6 @@ import com.example.cloud.common.config.Logger;
 import com.example.cloud.db.mapper.employee.IEmployeeMapper;
 import com.example.cloud.db.mapper.sb.common.ISystemParamMapper;
 import com.example.cloud.db.po.employee.EmployeePO;
-import com.example.cloud.server.service.employee.impl.EmployeeServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,7 @@ import java.util.List;
 @SpringBootTest
 public class CloudActionApplicationTests {
 
-    private final static Logger LOG = Logger.getLogger(EmployeeServiceImpl.class);
+    private final static Logger LOG = Logger.getLogger(CloudActionApplicationTests.class);
 
 
     @Autowired

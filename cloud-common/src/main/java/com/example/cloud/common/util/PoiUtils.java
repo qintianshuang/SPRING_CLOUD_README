@@ -4,6 +4,7 @@ import com.example.cloud.common.annotation.ExcelAnnotation;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -270,6 +271,7 @@ public class PoiUtils {
                 field.setAccessible(true);
                 excelAnnotation = field.getAnnotation(ExcelAnnotation.class);
                 int column = excelAnnotation.column();
+                int width = excelAnnotation.width();
                 boolean isRow = excelAnnotation.isRow();
                 if (isRow) {
                     break;
@@ -280,7 +282,11 @@ public class PoiUtils {
                 style.setFillForegroundColor(IndexedColors.AUTOMATIC.getIndex());
                 style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
                 cell.setCellValue(name);
+                sheet.setColumnWidth(column, (int)((width + 0.72) * 256));
             }
+        }
+        if (CollectionUtils.isEmpty(objectList)){
+            return workbook;
         }
         for (int i = 0; i < objectList.size(); i++) {
             job = objectList.get(i);

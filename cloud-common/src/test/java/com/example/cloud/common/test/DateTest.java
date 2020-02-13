@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class DateTest {
 
-    private final static Logger log = Logger.getLogger(DateTest.class);
+    private final static Logger LOG = Logger.getLogger(DateTest.class);
 
     @Test
     public void dateTestOne() {
@@ -160,9 +160,22 @@ public class DateTest {
     @Test
     public void dateTestNowToLastDay() {
         Date date2 = DateUtils.addMonthToDate(new Date(), 8);
-        log.debug("当前的时间DATE" + date2);
+        LOG.debug("当前的时间DATE" + date2);
         String yyyyMMddHHmmssS = DateUtils.getNow("yyyyMMdd");
         String lastDayOfMonth = CompanyDateUtil.getLastDayOfMonth(yyyyMMddHHmmssS, "yyyyMMdd", "yyyyMMdd");
         String yyyyMMdd = DateUtils.getNowToLastDay(date2, "yyyyMMdd");
+    }
+
+    @Test
+    public void test12() throws Exception {
+        String djxh = "10114403000027536636";
+        String skssqq = "2019-10-01";
+        String skssqz = "2019-12-31";
+        String sbqx = "2019-01-15";
+        CompanyDateUtil.isDateBefore(sbqx, "yyyy-MM-dd");
+        if (CompanyDateUtil.isDateBefore(sbqx, "yyyy-MM-dd")) {
+            LOG.debug("校验申报期限不通过：接收参数为[djxh=" + djxh + ",sssqQ=" + skssqq + ",sssqZ=" + skssqz + "],征管返回的期限结果为["
+                    + sbqx + "]");
+        }
     }
 }

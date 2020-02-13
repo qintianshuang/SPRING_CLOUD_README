@@ -16,7 +16,8 @@
     </resultMap>
 
     <select id="queryEmployeeByName" parameterType="java.lang.String" resultMap="resultMap">
-		SELECT * FROM emp_info t
+		SELECT t.emp_no, t.emp_name,
+        t.age,t.identity_card,t.family_address,t.live_address,t.phone,t.email,t.create_time,t.update_time FROM emp_info t
         <where>
             <!--
                 方法一: 直接使用 % 拼接字符串
@@ -28,7 +29,20 @@
                 t.emp_name like "%"#{empName}"%"
             </if>
         </where>
+        order by t.create_time desc
 	</select>
+
+    <select id="queryEmpByCardOrPhone" parameterType="java.lang.String" resultMap="resultMap">
+        SELECT * FROM emp_info t
+        <where>
+            <if test="identityCard != null and identityCard != ''">
+                t.identity_card = #{identityCard}
+            </if>
+            <if test="phone != null and phone != ''">
+                or t.phone = #{phone}
+            </if>
+        </where>
+    </select>
 
 <!--    <insert id="insertEmployeeList" parameterType="java.util.List">-->
 <!--        insert into emp_info (emp_no, emp_name,-->
@@ -49,21 +63,51 @@
 <!--            )-->
 <!--        </foreach>-->
 <!--    </insert>-->
-<!--    <insert id="creatEmployee" parameterType="com.example.cloud.db.po.employee.EmployeePO">-->
-<!--        insert into emp_info (emp_no, emp_name,-->
-<!--        age,identity_card,family_address,live_address,phone,email,create_time,update_time)-->
-<!--        values-->
-<!--            (-->
-<!--            #{empNo,jdbcType=VARCHAR},-->
-<!--            #{empName,jdbcType=VARCHAR},-->
-<!--            #{age,jdbcType=INTEGER},-->
-<!--            #{identityCard,jdbcType=VARCHAR},-->
-<!--            #{familyAddress,jdbcType=VARCHAR},-->
-<!--            #{liveAddress,jdbcType=VARCHAR},-->
-<!--            #{phone,jdbcType=VARCHAR},-->
-<!--            #{email,jdbcType=VARCHAR},-->
-<!--            now(),-->
-<!--            now()-->
-<!--            )-->
-<!--    </insert>-->
+    <insert id="saveEmployee" parameterType="com.example.cloud.db.po.employee.EmployeePO">
+        insert into emp_info (emp_no, emp_name,
+        age,identity_card,family_address,live_address,phone,email,create_time,update_time)
+        values
+            (
+            #{empNo,jdbcType=VARCHAR},
+            #{empName,jdbcType=VARCHAR},
+            #{age,jdbcType=INTEGER},
+            #{identityCard,jdbcType=VARCHAR},
+            #{familyAddress,jdbcType=VARCHAR},
+            #{liveAddress,jdbcType=VARCHAR},
+            #{phone,jdbcType=VARCHAR},
+            #{email,jdbcType=VARCHAR},
+            now(),
+            now()
+            )
+    </insert>
+
+    <update id="editEmployee">
+        update emp_info set
+        <if test="empName != null and empName != ''">
+        emp_name = #{empName},
+        </if>
+        <if test="age != null and age != ''">
+        age = #{age},
+        </if>
+        <if test="identityCard != null and identityCard != ''">
+        identity_card = #{identityCard},
+        </if>
+        <if test="familyAddress != null and familyAddress != ''">
+        family_address = #{familyAddress},
+        </if>
+        <if test="liveAddress != null and liveAddress != ''">
+        live_address = #{liveAddress},
+        </if>
+        <if test="phone != null and phone != ''">
+        phone = #{phone},
+        </if>
+        <if test="email != null and email != ''">
+        email = #{email}
+        </if>
+        where emp_no = #{empNo}
+    </update>
+
+    <delete id="deleteEmployee">
+        DELETE FROM emp_info  where emp_no = #{empNo}
+    </delete>
 </mapper>
