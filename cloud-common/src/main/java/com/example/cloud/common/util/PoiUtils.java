@@ -8,6 +8,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
@@ -64,22 +65,12 @@ public class PoiUtils {
      * @param fileName
      * @param workBook
      */
-    public static void outExcel(HttpServletResponse response, String fileName, Workbook workBook) throws IOException {
-
-        workBook.createSheet("sheet1");
-        Row row = workBook.getSheet("sheet1").createRow(0);    //创建第一行
-        for (int i = 0; i < 10; i++) {
-            Cell cell = row.createCell(i);
-            cell.setCellValue("测试数据" + i);
-        }
-
-
-
+    public static void outExcel(HttpServletRequest request,HttpServletResponse response, String fileName, Workbook workBook) throws IOException {
         OutputStream out = null;
         try {
             out = response.getOutputStream();
-            response.reset();
             response.setContentType("application/octet-stream;charset=iso-8859-1");
+            response.setHeader("Pragma", "no-cache");
             response.setHeader("Pragma", "no-cache");
             response.setHeader("Cache-Control", "no-cache");
             response.setDateHeader("Expires", 0);

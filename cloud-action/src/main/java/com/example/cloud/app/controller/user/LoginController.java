@@ -34,33 +34,6 @@ public class LoginController {
     @Qualifier("userService")
     private IUserService userService;
 
-//    @ApiOperation(value = "获取用户信息", notes = "获取用户信息", produces = "application/json")
-//    @ApiImplicitParams({
-//            @ApiImplicitParam(name = "username", value = "用户名", dataType = "string", paramType = "query", defaultValue = "admin"),
-//            @ApiImplicitParam(name = "password", value = "用户密码", dataType = "string", paramType = "query", defaultValue = "111111")
-//    })
-//    @PostMapping(value = "/login",produces = "application/json")
-//    public Object login(@RequestParam("username") String username,@RequestParam("password") String password) {
-//        String token = userService.getLogin(username,password);
-//        return token;
-//    }
-
-//    @ApiOperation(value = "获取用户信息", notes = "获取用户信息", produces = "application/json")
-//    @ApiImplicitParams({
-//            @ApiImplicitParam(name = "username", value = "用户名", dataType = "string", paramType = "query", defaultValue = "admin"),
-//            @ApiImplicitParam(name = "password", value = "用户密码", dataType = "string", paramType = "query", defaultValue = "111111")
-//    })
-//    @PostMapping(value = "/login",produces = "application/json")
-//    public Object login(LoginBody loginBody) {
-//        String username = loginBody.getUsername();
-//        String password = loginBody.getPassword();
-////        String token = userService.getLogin(username,password);
-//        loginBody.setToken("111111111111111111");
-//        loginBody.setUsername(username);
-//        loginBody.setPassword(password);
-//        return loginBody;
-//    }
-
     @ApiOperation(value = "获取用户TOKEN", notes = "获取用户TOKEN", produces = "application/json")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "token", value = "用户密码", dataType = "string", paramType = "query", defaultValue = "111111")

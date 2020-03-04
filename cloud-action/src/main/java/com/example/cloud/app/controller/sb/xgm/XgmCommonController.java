@@ -1,7 +1,6 @@
 package com.example.cloud.app.controller.sb.xgm;
 
 import com.example.cloud.common.config.Logger;
-import com.example.cloud.common.util.PoiUtils;
 import com.example.cloud.company.service.sb.common.ISbJcjyBusiness;
 import com.example.cloud.company.service.sb.xgm.IXgmSbhyfpxzdrService;
 import com.example.cloud.company.service.sb.xgm.IZzsXgmhdxxService;
@@ -22,12 +21,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@Api(value = "申报公共组件", tags = {"申报公共组件"})
+@Api(value = "小规模公共组件", tags = {"小规模公共组件"})
 @RestController
-@RequestMapping(value = "/sb/common")
-public class XgmSbCommonController {
+@RequestMapping(value = "/xgm/common")
+public class XgmCommonController {
 
-    private final static Logger log = Logger.getLogger(XgmSbCommonController.class);
+    private final static Logger log = Logger.getLogger(XgmCommonController.class);
 
     @Autowired
     @Qualifier("zzsXgmJcjyBusiness")
@@ -51,8 +50,8 @@ public class XgmSbCommonController {
     public Object sbJcjy(@RequestParam("djxh") String djxh, @RequestParam("sssqq") String sssqq,
                          @RequestParam("sssqz") String sssqz, MultipartFile requestXml,
                          MultipartFile wsxxXml, MultipartFile lsxxXml) throws Exception {
-        Object resultVo = zzsXgmJcjyBusiness.sbJcjy(djxh, sssqq, sssqz, requestXml, wsxxXml, lsxxXml);
-        return resultVo;
+        Object object= zzsXgmJcjyBusiness.sbJcjy(djxh, sssqq, sssqz, requestXml, wsxxXml, lsxxXml);
+        return object;
     }
 
     @ApiOperation(value = "小规模华云数据导出", notes = "小规模华云数据导出", produces = "application/json")
@@ -64,7 +63,7 @@ public class XgmSbCommonController {
             throws IOException {
         String fileName = "小规模华云发票数据";
         Workbook workbook = xgmSbhyfpxzdrService.getHyfpdc(djxh);
-        PoiUtils.outExcel(response, fileName, workbook);
+//        PoiUtils.outExcel(response, fileName, workbook);
     }
 
     @ApiOperation(value = "小规模华云数据导出", notes = "小规模华云数据导出", produces = "application/json")

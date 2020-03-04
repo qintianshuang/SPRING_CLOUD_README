@@ -2,8 +2,76 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.cloud.db.mapper.sb.common.ISystemParamMapper">
 
+    <resultMap id="resultMap" type="com.example.cloud.db.po.common.XtXtcsPO">
+        <result property="xh" column="xh" jdbcType="VARCHAR"/>
+        <result property="paramCode" column="param_code" jdbcType="VARCHAR"/>
+        <result property="paramValue" column="param_value" jdbcType="VARCHAR"/>
+        <result property="paramDesc" column="param_desc" jdbcType="VARCHAR"/>
+    </resultMap>
+
     <select id="getSystemParam" resultType="java.lang.String">
       select t.param_value from xt_xtcs t where t.param_code = #{code}
     </select>
 
+    <select id="getSystemParamXtXtcsByXhOrCode" resultMap="resultMap">
+      select t.xh, t.param_code, t.param_value, t.param_desc from xt_xtcs t
+        <where>
+            <if test="xh != null and xh != ''">
+                t.xh = #{xh}
+            </if>
+            <if test="code != null and code != ''">
+                or t.param_code = #{code}
+            </if>
+        </where>
+    </select>
+
+    <select id="getSystemParamMaxxh" resultType="java.lang.String">
+      select max(t.xh) as xh from xt_xtcs t where t.xh &gt;= 100000000000 and t.xh &lt;= 2999999999999
+    </select>
+
+    <select id="getSystemParamBySearch" resultType="com.example.cloud.common.bean.sb.XtXtcs">
+        select t.xh, t.param_code, t.param_value, t.param_desc
+        from xt_xtcs t
+      <where>
+          <if test="code != null and code != ''">
+            t.param_code like "%"#{code}"%"
+            or
+            t.param_value like "%"#{code}"%"
+            order by t.xh
+          </if>
+      </where>
+    </select>
+
+    <insert id="saveXtcs" parameterType="com.example.cloud.db.po.common.XtXtcsPO">
+        insert into xt_xtcs  (xh, param_code, param_value, param_desc)
+        values
+            (
+            #{xh,jdbcType=VARCHAR},
+            #{paramCode,jdbcType=VARCHAR},
+            #{paramValue,jdbcType=VARCHAR},
+            #{paramDesc,jdbcType=VARCHAR}
+            )
+    </insert>
+
+    <update id="editXtcs">
+        update xt_xtcs t set
+        <if test="paramCode != null and paramCode != ''">
+            t.param_code = #{paramCode},
+        </if>
+        <if test="paramValue != null and paramValue != ''">
+            t.param_value = #{paramValue},
+        </if>
+        <if test="paramDesc != null and paramDesc != ''">
+            t.param_desc = #{paramDesc}
+        </if>
+        where t.xh = #{xh}
+    </update>
+
+    <delete id="deleteXtcs">
+        DELETE FROM xt_xtcs
+        where param_code = #{code}
+        <if test="xh != null and xh != ''">
+            and xh = #{xh}
+        </if>
+    </delete>
 </mapper>

@@ -14,9 +14,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.util.List;
 
 /***
  *
@@ -41,13 +41,13 @@ public class EmployeeController {
     @ApiOperation(value = "获取用户信息", notes = "获取用户信息", produces = "application/json")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "name", value = "姓名", dataType = "string", paramType = "query", defaultValue = "小红"),
-            @ApiImplicitParam(name = "page", value = "页数", dataType = "in", paramType = "query", defaultValue = "小红"),
-            @ApiImplicitParam(name = "limit", value = "条数", dataType = "string", paramType = "query", defaultValue = "小红")
+            @ApiImplicitParam(name = "current", value = "当前页", dataType = "string", paramType = "query", defaultValue = "1"),
+            @ApiImplicitParam(name = "size", value = "条数", dataType = "string", paramType = "query", defaultValue = "10")
     })
     @GetMapping(value = "/queryEmpByName")
-    public List<Employee> queryEmpByName(@RequestParam String name,@RequestParam String page,@RequestParam String limit) {
-        List<Employee> employees = empService.queryEmpByName(name);
-        return employees;
+    public Object queryEmpByName(@RequestParam String name, @RequestParam String current, @RequestParam String size) {
+        Object object = empService.queryEmpByName(name, current, size);
+        return object;
     }
 
 
@@ -70,7 +70,7 @@ public class EmployeeController {
             return "params is not null";
         }
         empService.editEmployee(employee);
-        return "保存成功";
+        return "修改成功";
     }
 
     @ApiOperation(value = "删除用户信息", notes = "删除用户信息", produces = "application/json")
@@ -87,17 +87,18 @@ public class EmployeeController {
     }
 
     @ApiOperation(value = "用户信息模板下载", notes = "用户信息模板下载", produces = "application/json")
-    @GetMapping("/downloadEmpTemplate")
-    public void downloadEmpTemplate(HttpServletResponse response) throws Exception {
+    @PostMapping("/downloadEmpTemplate")
+    public void downloadEmpTemplate(HttpServletRequest request,HttpServletResponse response) throws Exception {
         String fileName = "文件下载";
         Workbook workbook = empService.downloadEmpTemplate();
-        PoiUtils.outExcel(response, fileName, workbook);
+        PoiUtils.outExcel(request,response, fileName, workbook);
+//        return "下载成功";
     }
 
     @ApiOperation(value = "用户信息批量导入", notes = "用户信息批量导入", produces = "application/json")
-    @GetMapping("/exportEmpList")
-    public Object exportEmpList(MultipartFile multipartFile) throws Exception {
-        Object Object = empService.exportEmpList();
+    @PostMapping(value = "/exportEmpList")
+    public Object exportEmpList(@RequestParam(value = "file", required = false) MultipartFile file) throws Exception {
+        Object Object = empService.exportEmpList(file);
         return Object;
     }
 }

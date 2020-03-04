@@ -6,31 +6,31 @@ import com.example.cloud.common.annotation.ExcelAnnotation;
 public class EmployeeTemplate {
 
     //人员名称
-    @ExcelAnnotation(column = 0,name="姓名",width = 200)
+    @ExcelAnnotation(column = 0,name="姓名",width = 20)
     private String empName;
 
     //年龄
-    @ExcelAnnotation(column = 1,name="年龄",width = 200)
+    @ExcelAnnotation(column = 1,name="年龄",width = 20)
     private String age;
 
     //身份证号码
-    @ExcelAnnotation(column = 2,name="身份证号码",width = 200)
+    @ExcelAnnotation(column = 2,name="身份证号码",width = 20)
     private String identityCard;
 
     //居住地址
-    @ExcelAnnotation(column = 3,name="居住地址",width = 200)
+    @ExcelAnnotation(column = 3,name="居住地址",width = 20)
     private String liveAddress;
 
     //户籍所在地
-    @ExcelAnnotation(column = 4,name="户籍所在地",width = 200)
+    @ExcelAnnotation(column = 4,name="户籍所在地",width = 20)
     private String familyAddress;
 
     //联系电话
-    @ExcelAnnotation(column = 4,name="联系电话",width = 200)
+    @ExcelAnnotation(column = 4,name="联系电话",width = 20)
     private String phone;
 
     //邮箱
-    @ExcelAnnotation(column = 5,name="邮箱",width = 200)
+    @ExcelAnnotation(column = 5,name="邮箱",width = 20)
     private String email;
 
     public String getEmpName() {

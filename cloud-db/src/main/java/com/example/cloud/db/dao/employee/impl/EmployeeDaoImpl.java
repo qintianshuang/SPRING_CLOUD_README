@@ -1,5 +1,7 @@
 package com.example.cloud.db.dao.employee.impl;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.cloud.common.bean.Employee;
 import com.example.cloud.db.dao.employee.IEmployeeDao;
@@ -28,16 +30,8 @@ public class EmployeeDaoImpl extends ServiceImpl<IEmployeeMapper, EmployeePO> im
      * @return
      */
     @Override
-    public List<Employee> queryEmpByName(String empName) {
-        List<Employee> employeeList = new ArrayList<>();
-        List<EmployeePO> employeePOList = employeeMapper.queryEmployeeByName(empName);
-        if (!CollectionUtils.isEmpty(employeePOList)) {
-            for (EmployeePO employeePO : employeePOList) {
-                Employee employee = new Employee();
-                BeanUtils.copyProperties(employeePO, employee);
-                employeeList.add(employee);
-            }
-        }
+    public IPage<Employee> queryEmpByName(Page<Employee> page, String empName) {
+        IPage<Employee> employeeList = employeeMapper.queryEmployeeByName(page, empName);
         log.debug("employeeList" + employeeList);
         return employeeList;
     }

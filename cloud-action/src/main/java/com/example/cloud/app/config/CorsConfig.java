@@ -13,6 +13,18 @@ public class CorsConfig {
         corsConfiguration.addAllowedOrigin("*"); // 1允许任何域名使用
         corsConfiguration.addAllowedHeader("*"); // 2允许任何头
         corsConfiguration.addAllowedMethod("*"); // 3允许任何方法（post、get等）
+//        corsConfiguration.addAllowedMethod("POST"); // 3允许任何方法（post、get等）
+//        corsConfiguration.addAllowedMethod("GET"); // 3允许任何方法（post、get等）
+//        corsConfiguration.addAllowedMethod("DELETE"); // 3允许任何方法（post、get等）
+        //允许cookie
+        corsConfiguration.setAllowCredentials(true);
+        corsConfiguration.setMaxAge(3600L);
+        corsConfiguration.addExposedHeader("set-cookie");
+        corsConfiguration.addExposedHeader("access-control-allow-headers");
+        corsConfiguration.addExposedHeader("access-control-allow-methods");
+        corsConfiguration.addExposedHeader("access-control-allow-origin");
+        corsConfiguration.addExposedHeader("access-control-max-age");
+        corsConfiguration.addExposedHeader("X-Frame-Options");
         return corsConfiguration;
     }
 

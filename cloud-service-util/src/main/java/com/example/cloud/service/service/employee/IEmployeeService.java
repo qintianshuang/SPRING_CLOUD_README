@@ -1,13 +1,13 @@
 package com.example.cloud.service.service.employee;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.example.cloud.common.bean.Employee;
 import org.apache.poi.ss.usermodel.Workbook;
-
-import java.util.List;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface IEmployeeService {
 
-    List<Employee> queryEmpByName(String name);
+    IPage<Employee> queryEmpByName(String name, String current, String size);
 
     void saveEmployee(Employee employee);
 
@@ -17,5 +17,5 @@ public interface IEmployeeService {
 
     Workbook downloadEmpTemplate() throws Exception;
 
-    Object exportEmpList();
+    Object exportEmpList(MultipartFile multipartFile) throws Exception;
 }

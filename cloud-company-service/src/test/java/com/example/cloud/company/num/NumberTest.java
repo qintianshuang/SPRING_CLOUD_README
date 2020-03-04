@@ -1,6 +1,6 @@
 package com.example.cloud.company.num;
 
-import com.example.cloud.company.common.build.xgm.qcxml.ArithUtil;
+import com.example.cloud.service.util.ArithUtil;
 import com.example.cloud.company.common.enums.SbjyCodeEnum;
 import com.example.cloud.company.common.vo.xgm.sbxx.sjgt3.zzsxgm.ZzsxgmGridlbVO;
 import org.junit.Test;

@@ -11,7 +11,7 @@ import com.example.cloud.service.base.po.BasePO;
  * @author qts
  * @since 2020-01-14
  */
-@TableName(value = "user")
+@TableName(value = "t_user")
 public class UserPO extends BasePO {
 
     private static final long serialVersionUID = 1L;
@@ -19,7 +19,7 @@ public class UserPO extends BasePO {
     /**
      * 用户名
      */
-    private String id;
+    private String userId;
 
 
     /**
@@ -42,12 +42,16 @@ public class UserPO extends BasePO {
      */
     private String eMail;
 
-    public String getId() {
-        return id;
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getUsername() {

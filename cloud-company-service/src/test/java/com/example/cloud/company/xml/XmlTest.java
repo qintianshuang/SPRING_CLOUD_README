@@ -2,7 +2,7 @@ package com.example.cloud.company.xml;
 
 import com.alibaba.fastjson.JSONObject;
 import com.example.cloud.common.config.Logger;
-import com.example.cloud.company.common.build.xgm.qcxml.ArithUtil;
+import com.example.cloud.service.util.ArithUtil;
 import org.junit.Test;
 
 import java.math.BigDecimal;

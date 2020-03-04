@@ -1,5 +1,6 @@
 package com.example.cloud.service.config.token;
 
+import com.alibaba.fastjson.JSONObject;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.example.cloud.common.bean.User;
@@ -8,6 +9,8 @@ import com.example.cloud.common.exception.BusinessException;
 import com.example.cloud.common.exception.CommonErrorCode;
 import com.example.cloud.service.service.user.IUserService;
 import com.example.cloud.service.util.JwtUtils;
+import com.example.cloud.service.util.RedisUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -24,17 +27,25 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
 
     private final static Logger LOG = Logger.getLogger(AuthenticationInterceptor.class);
 
-    private  final String[] URL_ARR = new String[]{"/swagger-resources/configuration/ui","/swagger-resources","/v2/api-docs","/swagger-resources/configuration/security"};
+    private  final String[] URL_ARR = new String[]{"swagger-resources","/v2/api-docs","/getSystemParamByOnOff"};
 
     @Autowired
     IUserService userService;
+
+    @Autowired
+    private RedisUtil redisUtil;
 
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object object) throws Exception {
         LOG.info("request请求地址path ：【"+ httpServletRequest.getServletPath()+"】=====url:【"+httpServletRequest.getRequestURI() + "】");
         boolean key = false;
         for (String url : URL_ARR) {
-            if (url.equals(httpServletRequest.getServletPath()) || url.equals(httpServletRequest.getServletPath())){
+            if (StringUtils.isBlank(httpServletRequest.getServletPath())){
+                continue;
+            }
+            int i = httpServletRequest.getServletPath().indexOf(url);
+            LOG.info("URL是否包含关键字:【" + i + "】");
+            if (i != -1){
                 key = true;
                 break;
             }
@@ -42,11 +53,17 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
         if (key){
             return key;
         }
+
+        String onKey = redisUtil.getValue("onKey");
+        if ("N".equals(onKey)){
+            return true;
+        }
         // 从 http 请求头中取出 token
         String token = httpServletRequest.getHeader("X-Token");
         // 如果不是映射到方法直接通过
         if (!(object instanceof HandlerMethod)) {
             return true;
+//            throw new BusinessException(CommonErrorCode.LOGIN_FAILURE.getCode(), "系统异常，请重新登录！");
         }
         HandlerMethod handlerMethod = (HandlerMethod) object;
         Method method = handlerMethod.getMethod();
@@ -82,7 +99,8 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
 //            throw new RuntimeException("非法访问！");
             throw new BusinessException(CommonErrorCode.LOGIN_FAILURE.getCode(), "非法访问，请重新登录！");
         }
-        httpServletResponse.addHeader("X-Token",null);
+        String str = JSONObject.toJSONString(user);
+        httpServletRequest.setAttribute("userInfo",str);
         //检查有没有需要用户权限的注解
         if (method.isAnnotationPresent(CheckToken.class)) {
             CheckToken checkToken = method.getAnnotation(CheckToken.class);

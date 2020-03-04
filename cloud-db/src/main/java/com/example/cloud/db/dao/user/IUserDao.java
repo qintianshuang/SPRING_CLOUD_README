@@ -15,8 +15,8 @@ public interface IUserDao extends IService<UserPO> {
 
     /***
      *
-     * @param username
+     * @param user
      * @return
      */
-    User findUser(String username);
+    User findUser(User user);
 }

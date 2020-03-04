@@ -1,6 +1,8 @@
 package com.example.cloud.business.service.employee.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.cloud.business.service.template.employee.EmployeeTemplate;
 import com.example.cloud.common.bean.Employee;
 import com.example.cloud.common.config.Logger;
@@ -17,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.UUID;
@@ -38,8 +41,11 @@ public class EmployeeServiceImpl implements IEmployeeService {
      * @return
      */
     @Override
-    public List<Employee> queryEmpByName(String empName) {
-        List<Employee> employeeList = employeeDao.queryEmpByName(empName);
+    public IPage<Employee> queryEmpByName(String empName, String current, String size) {
+        Page<Employee> page = new Page<>();
+        page.setCurrent(Long.parseLong(current));
+        page.setSize(Long.parseLong(size));
+        IPage<Employee> employeeList = employeeDao.queryEmpByName(page,empName);
         LOG.info("employeeList=【" + JSONObject.toJSONString(employeeList) + "】");
         return employeeList;
     }
@@ -120,8 +126,12 @@ public class EmployeeServiceImpl implements IEmployeeService {
     }
 
     @Override
-    public Object exportEmpList() {
-
-        return null;
+    public List<EmployeeTemplate> exportEmpList(MultipartFile multipartFile) throws Exception {
+        if(multipartFile == null){
+            throw new BusinessException(CommonErrorCode.PARAM_ERROR.getCode(), "请正确上传文件！");
+        }
+        String sheetName ="人员表";
+        List<EmployeeTemplate> employeeTemplates = PoiUtils.readExcel(multipartFile, EmployeeTemplate.class, sheetName);
+        return employeeTemplates;
     }
 }

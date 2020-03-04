@@ -26,7 +26,7 @@ public class UserDaoImpl extends ServiceImpl<IUserMapper, UserPO> implements IUs
             return null;
         }
         UserPO userPO = new UserPO();
-        userPO.setId(userId);
+        userPO.setUserId(userId);
         UserPO userPO1 = mapper.selectOne(new QueryWrapper<>());
         if (userPO1 != null){
             User user = new User();
@@ -37,17 +37,18 @@ public class UserDaoImpl extends ServiceImpl<IUserMapper, UserPO> implements IUs
     }
 
     @Override
-    public User findUser(String username) {
-        if (StringUtils.isBlank(username)){
+    public User findUser(User user) {
+        if (user == null){
             return null;
         }
         UserPO userPO = new UserPO();
-        userPO.setUsername(username);
+        userPO.setUsername(user.getUsername());
+        userPO.setPassword(user.getPassword());
         UserPO userPO1 = mapper.selectOne(new QueryWrapper<>());
         if (userPO1 != null){
-            User user = new User();
-            BeanUtils.copyProperties(userPO1,user);
-            return user;
+            User u = new User();
+            BeanUtils.copyProperties(userPO1,u);
+            return u;
         }
         return null;
     }

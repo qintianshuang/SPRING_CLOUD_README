@@ -43,6 +43,11 @@ spring:
           password: 716622
           driver-class-name: oracle.jdbc.driver.OracleDriver
           url: jdbc:oracle:thin:@127.0.0.1:1521/ADMIN.EMPLOYEE
+        WSBSFWT_DB:
+          username: root
+          password: Servyou_0571
+          driver-class-name: com.mysql.jdbc.Driver
+          url: jdbc:mysql://10.199.153.27:3306/nfwsbsfwt?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&characterEncoding=UTF8
 mybatis-plus:
   # 如果是放在src/main/java目录下 classpath:/com/yourpackage/*/mapper/*Mapper.xml
   # 如果是放在resource目录 classpath:/mapper/*Mapper.xml
@@ -72,3 +77,9 @@ mybatis-plus:
     cache-enabled: false
     #配置JdbcTypeForNull, oracle数据库必须配置
     jdbc-type-for-null: 'null'
+# pagehelper
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql

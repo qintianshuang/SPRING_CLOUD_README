@@ -5,6 +5,7 @@ import com.example.cloud.common.exception.BusinessException;
 import com.example.cloud.common.exception.CommonErrorCode;
 import com.example.cloud.db.dao.user.IUserDao;
 import com.example.cloud.service.service.user.IUserService;
+import com.example.cloud.service.util.RedisUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -19,6 +20,9 @@ public class UserServiceImpl implements IUserService {
     @Qualifier(value = "userDao")
     private IUserDao userDao;
 
+    @Autowired
+    private RedisUtil redisUtil;
+
     @Override
     public String getLogin(String username, String password) {
         return "11111111111111111";
@@ -32,7 +36,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public User findUser(User user) {
-        User userinfo = userDao.findUser(user.getUsername());
+        User userinfo = userDao.findUser(user);
         if (userinfo == null){
             throw new BusinessException(CommonErrorCode.PARAM_ERROR.getCode(),"用户不存在！");
         }
