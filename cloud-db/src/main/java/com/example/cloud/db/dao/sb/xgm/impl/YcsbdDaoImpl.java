@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 @Repository(value = "ycsbdDao")
-public class IYcsbdDaoImpl extends ServiceImpl<IYcsbdMapper, ZsxmDmslPO> implements IYcsbdDao {
+public class YcsbdDaoImpl extends ServiceImpl<IYcsbdMapper, ZsxmDmslPO> implements IYcsbdDao {
 
     private static final Logger LOG = Logger.getLogger(HdxxTqDaoImpl.class);
 

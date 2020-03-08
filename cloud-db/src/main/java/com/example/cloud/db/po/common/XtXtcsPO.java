@@ -1,6 +1,7 @@
 package com.example.cloud.db.po.common;
 
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.example.cloud.service.base.po.BasePO;
 
 /**
  * <p>
@@ -10,7 +11,8 @@ import java.io.Serializable;
  * @author qts
  * @since 2020-03-02
  */
-public class XtXtcsPO implements Serializable {
+@TableName("xt_xtcs")
+public class XtXtcsPO extends BasePO {
 
     private static final long serialVersionUID = 1L;
 

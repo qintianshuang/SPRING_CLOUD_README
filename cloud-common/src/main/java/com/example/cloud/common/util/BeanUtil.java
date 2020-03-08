@@ -68,7 +68,40 @@ public class BeanUtil {
                 Object value = getter != null ? getter.invoke(beanObj) : null;
                 map.put(key, value);
             }
+            return map;
+        } catch (Exception ex) {
+            LOG.error( ex.getMessage());
+            throw new RuntimeException();
+        }
+    }
 
+    /**
+     * 使用Introspector，对象转换为map集合
+     *
+     * @param beanObj javabean对象
+     * @return map集合
+     */
+    public static Map<String, String> beanToMapStrValue(Object beanObj) {
+        if (null == beanObj) {
+            return null;
+        }
+        Map<String, String> map = new HashMap<>();
+        try {
+            BeanInfo beanInfo = Introspector.getBeanInfo(beanObj.getClass());
+            PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
+            for (PropertyDescriptor property : propertyDescriptors) {
+                String key = property.getName();
+                if (key.compareToIgnoreCase("class") == 0) {
+                    continue;
+                }
+                Method getter = property.getReadMethod();
+                Object value = getter != null ? getter.invoke(beanObj) : null;
+                if (value != null){
+                    map.put(key, value.toString());
+                }else {
+                    map.put(key, "");
+                }
+            }
             return map;
         } catch (Exception ex) {
             LOG.error( ex.getMessage());

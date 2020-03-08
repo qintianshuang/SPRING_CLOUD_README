@@ -1,6 +1,6 @@
 package com.example.cloud.company.date;
 
-import com.example.cloud.company.common.build.xgm.qcxml.DateUtil;
+import com.example.cloud.service.util.DateUtil;
 import org.junit.Test;
 
 import java.util.Date;

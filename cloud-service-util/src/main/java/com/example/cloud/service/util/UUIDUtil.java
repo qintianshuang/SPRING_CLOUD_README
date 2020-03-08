@@ -24,7 +24,7 @@ public class UUIDUtil {
     public static String getUUIDByXtcs(String xh) {
         String uuid = "";
         if (StringUtils.isEmpty(xh)) {
-            uuid = com.example.cloud.service.util.DateUtils.format(new Date(), "yyyyMMdd") + "00001";
+            uuid = DateUtil.format(new Date(), "yyyyMMdd") + "00001";
         } else {
             BigDecimal bigDecimal = new BigDecimal(xh);
             BigDecimal add = bigDecimal.add(new BigDecimal("1"));

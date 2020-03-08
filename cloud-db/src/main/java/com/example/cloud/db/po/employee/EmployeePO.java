@@ -6,7 +6,7 @@ import com.example.cloud.service.base.po.BasePO;
 /***
  *人员信息PO
  */
-@TableName(value = "emp_info")
+@TableName(value = "t_emp_info")
 public class EmployeePO extends BasePO{
 
     //人员编号

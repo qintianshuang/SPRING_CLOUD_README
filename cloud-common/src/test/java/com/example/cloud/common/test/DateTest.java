@@ -2,7 +2,7 @@ package com.example.cloud.common.test;
 
 import com.example.cloud.common.config.Logger;
 import com.example.cloud.common.util.CompanyDateUtil;
-import com.example.cloud.service.util.DateUtils;
+import com.example.cloud.service.util.DateUtil;
 import org.junit.Test;
 
 import java.util.Date;
@@ -159,11 +159,11 @@ public class DateTest {
 
     @Test
     public void dateTestNowToLastDay() {
-        Date date2 = DateUtils.addMonthToDate(new Date(), 8);
+        Date date2 = DateUtil.addMonthToDate(new Date(), 8);
         LOG.debug("当前的时间DATE" + date2);
-        String yyyyMMddHHmmssS = DateUtils.getNow("yyyyMMdd");
+        String yyyyMMddHHmmssS = DateUtil.getNow("yyyyMMdd");
         String lastDayOfMonth = CompanyDateUtil.getLastDayOfMonth(yyyyMMddHHmmssS, "yyyyMMdd", "yyyyMMdd");
-        String yyyyMMdd = DateUtils.getNowToLastDay(date2, "yyyyMMdd");
+        String yyyyMMdd = DateUtil.getNowToLastDay(date2, "yyyyMMdd");
     }
 
     @Test
@@ -177,5 +177,25 @@ public class DateTest {
             LOG.debug("校验申报期限不通过：接收参数为[djxh=" + djxh + ",sssqQ=" + skssqq + ",sssqZ=" + skssqz + "],征管返回的期限结果为["
                     + sbqx + "]");
         }
+    }
+
+    @Test
+    public void  test13(){
+        String time = "2020-12-31";
+        String sssqq = DateUtil.getDareToseasonPrefixByDate(time,"yyyy-MM-dd");
+        System.out.println(sssqq);
+    }
+
+    @Test
+    public void  test14(){
+        String time = "2020-12-31";
+        String sssqq = DateUtil.getDareToseasonEndByDate(time,"yyyy-MM-dd");
+        System.out.println(sssqq);
+    }
+
+    @Test
+    public void  test15(){
+        String sssqq = DateUtil.getMonthToDate(new Date());
+        System.out.println(sssqq);
     }
 }

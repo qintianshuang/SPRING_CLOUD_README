@@ -115,6 +115,7 @@ public class RedisUtil {
 
     }
 
+
     /**
      * (存入redis数据)
      *
@@ -142,6 +143,20 @@ public class RedisUtil {
             closeJedis(jedis);
         }
 
+    }
+
+    /**
+     * (存入redis数据)
+     *
+     * @param @param key
+     * @param @param value
+     *               //     * @param index 具体数据库
+     * @return void
+     * @throws
+     * @Title: setV
+     */
+    public <V> void set(String key, V value,String seconds) {
+        setValueExpireKey(key,value,Integer.parseInt(seconds));
     }
 
     /**
@@ -202,6 +217,20 @@ public class RedisUtil {
             return (V) value;
         }
     }
+
+    /**
+     * getV(获取redis数据信息)
+     * @param @param  key
+     * @param @return
+     * @return V
+     * @throws
+     * @Title: getV
+     */
+    @SuppressWarnings("unchecked")
+    public <V> V get(String key) {
+        return getValue(key);
+    }
+
 
     /**
      * getV(获取redis数据信息)

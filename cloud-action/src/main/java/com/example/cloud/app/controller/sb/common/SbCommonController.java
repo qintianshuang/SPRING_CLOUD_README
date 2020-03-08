@@ -43,23 +43,15 @@ public class SbCommonController {
     @ApiOperation(value = "保存系统参数", notes = "保存系统参数", produces = "application/json")
     @PostMapping(value = "/saveXtcs")
     public Object saveXtcs(@RequestBody @Valid XtXtcs xtXtcs) {
-        // 校验参数
-        if (xtXtcs == null) {
-            return "params is not null";
-        }
-        systemParamClient.saveXtcs(xtXtcs);
-        return "保存成功";
+        String str = systemParamClient.saveXtcs(xtXtcs);
+        return str;
     }
 
     @ApiOperation(value = "修改系统参数", notes = "修改系统参数", produces = "application/json")
     @PostMapping(value = "/editXtcs")
     public Object editXtcs(@RequestBody @Valid XtXtcs xtXtcs) {
-        // 校验参数
-        if (xtXtcs == null) {
-            return "params is not null";
-        }
-        systemParamClient.editXtcs(xtXtcs);
-        return "修改成功";
+        String str = systemParamClient.editXtcs(xtXtcs);
+        return str;
     }
 
     @ApiOperation(value = "删除系统参数", notes = "删除系统参数", produces = "application/json")

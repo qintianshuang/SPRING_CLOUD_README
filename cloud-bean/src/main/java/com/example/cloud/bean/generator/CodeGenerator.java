@@ -39,8 +39,6 @@ public class CodeGenerator {
     }
 
     public static void main(String[] args) {
-        File file = new File("D:\\workspace\\SPRING_CLOUD_README\\cloud-bean\\src\\main\\java\\com\\example\\cloud\\bean\\common");
-        delFile(file);
         // 代码生成器
         AutoGenerator mpg = new AutoGenerator();
 
@@ -64,9 +62,11 @@ public class CodeGenerator {
         dsc.setPassword(jdbcEnum.getPassword());
         mpg.setDataSource(dsc);
 
+        File file = new File("D:\\workspace\\SPRING_CLOUD_README\\cloud-bean\\src\\main\\java\\com\\example\\cloud\\bean\\common\\" + jdbcEnum.getDbName());
+        delFile(file);
         // 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setModuleName(scanner("模块名"));
+        pc.setModuleName(jdbcEnum.getDbName());
         pc.setParent("com.example.cloud.bean.common");
         mpg.setPackageInfo(pc);
 

@@ -62,4 +62,5 @@
     <select id="queryFjsJzblByJmxzDm" resultType="java.lang.String">
        SELECT a.JMFD as jmbl FROM HX_ZGXT_CS_GY_SSJMXZJMFDEDSLGX a WHERE a.SSJMXZ_DM = #{jmxzDm}
     </select>
+
 </mapper>

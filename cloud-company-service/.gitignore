@@ -34,3 +34,4 @@ build/
 /src/main/java/com/example/cloud/company/
 !/cloud-company-service.iml
 /target/
+/cloud-company-service.iml

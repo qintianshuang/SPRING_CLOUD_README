@@ -59,4 +59,36 @@ public class HdxxTqDaoImpl extends ServiceImpl<IHdxxTqMapper, ZsxmDmslPO> implem
             return ResultVo.valueOfError("未查询到减征比例信息!");
         }
     }
+
+    @Override
+    public ResultVo isYrdhyqwrdYbnsr(String djxh) {
+        return ResultVo.valueOfSuccess();
+    }
+
+    @Override
+    public ResultVo queryFjssfzrdxx(String s, String sssqQ, String sssqZ, String djxh) {
+        return null;
+    }
+
+    @Override
+    public ResultVo isYgzqy(String hymx) {
+        return null;
+    }
+
+    @Override
+    public ResultVo queryzgkjmxxNew(String sssqQ, String sssqZ) {
+        return null;
+    }
+
+
+    @Override
+    public ResultVo queryJsxzDmAndMc(String jmxzDm) {
+        return null;
+    }
+
+
+    @Override
+    public boolean IsQhjtNsr(String djxh, String sssqQ, String sssqZ) {
+        return true;
+    }
 }

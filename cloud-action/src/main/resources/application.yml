@@ -43,6 +43,21 @@ spring:
           password: 716622
           driver-class-name: oracle.jdbc.driver.OracleDriver
           url: jdbc:oracle:thin:@127.0.0.1:1521/ADMIN.EMPLOYEE
+        BSCL_DB:
+          username: nfbscl
+          password: nfbscl
+          driver-class-name: oracle.jdbc.driver.OracleDriver
+          url: jdbc:oracle:thin:@10.199.138.32:1521/szkfdb
+        WSCL_DB:
+          username: nfwscl
+          password: nfwscl
+          driver-class-name: oracle.jdbc.driver.OracleDriver
+          url: jdbc:oracle:thin:@10.199.138.32:1521/szkfdb
+        GT3_DB:
+          username: zj_wbcx
+          password: cx123
+          driver-class-name: oracle.jdbc.driver.OracleDriver
+          url: jdbc:oracle:thin:@192.168.150.76:1521:sydb
         WSBSFWT_DB:
           username: root
           password: Servyou_0571

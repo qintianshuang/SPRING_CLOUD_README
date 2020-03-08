@@ -1,9 +1,9 @@
 package com.example.cloud.db.po.sb.xgm;
 
-import java.io.Serializable;
+import com.example.cloud.service.base.po.BasePO;
 
-
-public class ZsxmDmslPO implements Serializable {
+//@TableName("PBBD_XGM_NEW")
+public class ZsxmDmslPO extends BasePO {
 
     private String rdpzuuid;
 
