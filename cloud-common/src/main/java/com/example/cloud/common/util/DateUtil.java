@@ -738,6 +738,30 @@ public final class DateUtil {
         }
     }
 
+    public static Date dateAuto(String date) {
+        if (StringUtils.isEmpty(date)) {
+            return null;
+        } else {
+            String formatter = null;
+            if (date.indexOf(45) != -1) {
+                formatter = "yyyy-MM-dd";
+            } else if (date.indexOf(47) != -1) {
+                formatter = "yyyy/MM/dd";
+            } else {
+                formatter = "yyyyMMdd";
+            }
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat(formatter);
+            dateFormat.setLenient(false);
+
+            try {
+                return dateFormat.parse(date);
+            } catch (Exception var5) {
+                return null;
+            }
+        }
+    }
+
     /***
      *
      * @param time
