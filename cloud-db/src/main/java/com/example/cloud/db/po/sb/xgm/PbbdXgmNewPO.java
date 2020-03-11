@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.example.cloud.service.base.po.BasePO;
 
+import java.util.Date;
+
 /**
  * <p>
  * 
@@ -45,13 +47,13 @@ public class PbbdXgmNewPO extends BasePO {
      * 税款所属期起
      */
     @TableField("SKSSQQ")
-    private String skssqq;
+    private Date skssqq;
 
     /**
      * 税款所属期止
      */
     @TableField("SKSSQZ")
-    private String skssqz;
+    private Date skssqz;
 
     /**
      * 专用发票自开不含税销售额—货物3%
@@ -177,13 +179,13 @@ public class PbbdXgmNewPO extends BasePO {
      * 数据加工日期
      */
     @TableField("SJJCPCH")
-    private String sjjcpch;
+    private Date sjjcpch;
 
     /**
      * 数据增量时间
      */
     @TableField("SJJCSJ")
-    private String sjjcsj;
+    private Date sjjcsj;
 
     /**
      * 机动车发票
@@ -214,6 +216,15 @@ public class PbbdXgmNewPO extends BasePO {
      */
     @TableField("DZFP")
     private String dzfp;
+
+    public PbbdXgmNewPO() {
+    }
+
+    public PbbdXgmNewPO(String djxh, Date skssqq, Date skssqz) {
+        this.djxh = djxh;
+        this.skssqq = skssqq;
+        this.skssqz = skssqz;
+    }
 
     public String getDjxh() {
         return djxh;
@@ -247,19 +258,19 @@ public class PbbdXgmNewPO extends BasePO {
         this.jdDm = jdDm;
     }
 
-    public String getSkssqq() {
+    public Date getSkssqq() {
         return skssqq;
     }
 
-    public void setSkssqq(String skssqq) {
+    public void setSkssqq(Date skssqq) {
         this.skssqq = skssqq;
     }
 
-    public String getSkssqz() {
+    public Date getSkssqz() {
         return skssqz;
     }
 
-    public void setSkssqz(String skssqz) {
+    public void setSkssqz(Date skssqz) {
         this.skssqz = skssqz;
     }
 
@@ -423,19 +434,19 @@ public class PbbdXgmNewPO extends BasePO {
         this.ptfpdkbhsxse = ptfpdkbhsxse;
     }
 
-    public String getSjjcpch() {
+    public Date getSjjcpch() {
         return sjjcpch;
     }
 
-    public void setSjjcpch(String sjjcpch) {
+    public void setSjjcpch(Date sjjcpch) {
         this.sjjcpch = sjjcpch;
     }
 
-    public String getSjjcsj() {
+    public Date getSjjcsj() {
         return sjjcsj;
     }
 
-    public void setSjjcsj(String sjjcsj) {
+    public void setSjjcsj(Date sjjcsj) {
         this.sjjcsj = sjjcsj;
     }
 

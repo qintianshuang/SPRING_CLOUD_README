@@ -25,6 +25,18 @@ public interface IXgmHdxxMapper extends BaseMapper<PbbdXgmNewPO> {
 
     /***
      *
+     * @param page
+     * @param djxh
+     * @param skssqq
+     * @param skssqz
+     * @return
+     */
+    @DS("ORACLE_DB")
+    IPage<PbbdXgmNew> getHyfpxx(Page<?> page, @Param("djxh") String djxh, @Param("skssqq") String skssqq, @Param("skssqz") String skssqz);
+
+
+    /***
+     *
      * @param djxh
      * @param nsrsbh
      * @param type
@@ -40,4 +52,27 @@ public interface IXgmHdxxMapper extends BaseMapper<PbbdXgmNewPO> {
      */
     @DS("WSCL_DB")
     String getXgmfwsj(@Param("djxh") String djxh, @Param("nsrsbh") String nsrsbh);
+
+//    /***
+//     *
+//     * @param pbbdXgmNewPO
+//     */
+//    @DS("ORACLE_DB")
+//    void saveFpdata(PbbdXgmNewPO pbbdXgmNewPO);
+//
+//    /***
+//     *
+//     * @param pbbdXgmNewPO
+//     */
+//    @DS("ORACLE_DB")
+//    void editFpdata(PbbdXgmNewPO pbbdXgmNewPO);
+//
+//    /***
+//     *
+//     * @param djxh
+//     * @param sssqq
+//     * @param sssqz
+//     */
+//    @DS("ORACLE_DB")
+//    void deleteFpdata(@Param("djxh") String djxh, @Param("sssqq") String sssqq, @Param("sssqz") String sssqz);
 }

@@ -23,6 +23,17 @@ public interface IXgmHdxxDao extends IService<PbbdXgmNewPO> {
 
     /***
      *
+     * @param page
+     * @param djxh
+     * @param sssqq
+     * @param sssqz
+     * @return
+     */
+    IPage<PbbdXgmNew> getHyfpdata(Page<PbbdXgmNew> page, String djxh, String sssqq, String sssqz);
+
+
+    /***
+     *
      * @param djxh
      * @param skssqq
      * @param skssqz
@@ -45,4 +56,25 @@ public interface IXgmHdxxDao extends IService<PbbdXgmNewPO> {
      * @return
      */
     ResultVo getXgmfwsj(String djxh, String nsrsbh);
+
+    /***
+     *
+     * @param pbbdXgmNew
+     */
+    void saveFpdata(PbbdXgmNew pbbdXgmNew);
+
+    /***
+     *
+     * @param pbbdXgmNew
+     */
+    void editFpdata(PbbdXgmNew pbbdXgmNew);
+
+
+    /***
+     *
+     * @param djxh
+     * @param sssqq
+     * @param sssqz
+     */
+    void deleteFpdata(String djxh, String sssqq, String sssqz);
 }
