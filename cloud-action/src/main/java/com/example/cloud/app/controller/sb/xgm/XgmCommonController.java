@@ -1,5 +1,6 @@
 package com.example.cloud.app.controller.sb.xgm;
 
+import com.example.cloud.common.bean.sb.PbbdXgmNew;
 import com.example.cloud.common.config.Logger;
 import com.example.cloud.common.util.PoiUtils;
 import com.example.cloud.company.service.sb.xgm.ISbJcjyBusiness;
@@ -17,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.io.IOException;
 
 
@@ -55,7 +57,7 @@ public class XgmCommonController {
     @ApiOperation(value = "小规模发票数据", notes = "小规模发票数据", produces = "application/json")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "djxh", value = "登记序号", dataType = "string", paramType = "query", defaultValue = "10114403000026000891"),
-            @ApiImplicitParam(name = "sbsq", value = "所属期起", dataType = "String", paramType = "query", defaultValue = "2019-01-11"),
+            @ApiImplicitParam(name = "sbsq", value = "所属期", dataType = "String", paramType = "query", defaultValue = "2019-01-11"),
             @ApiImplicitParam(name = "isLoseData", value = "是否显示失效数据", dataType = "String", paramType = "query", defaultValue = "N"),
             @ApiImplicitParam(name = "current", value = "当前页", dataType = "string", paramType = "query", defaultValue = "1"),
             @ApiImplicitParam(name = "size", value = "条数", dataType = "string", paramType = "query", defaultValue = "10")
@@ -67,6 +69,52 @@ public class XgmCommonController {
         Object object= xgmSbhyfpService.getHyfpdata(djxh, sbsq,isLoseData,current,size);
         return object;
     }
+
+
+
+    @ApiOperation(value = "保存小规模发票数据", notes = "保存小规模发票数据", produces = "application/json")
+    @PostMapping(value = "/saveFpdata")
+    public Object saveFpdata(@RequestBody @Valid PbbdXgmNew pbbdXgmNew) {
+        // 校验参数
+        if (pbbdXgmNew == null) {
+            return "params is not null";
+        }
+        xgmSbhyfpService.saveFpdata(pbbdXgmNew);
+        return "保存成功";
+    }
+
+    @ApiOperation(value = "修改小规模发票数据", notes = "修改小规模发票数据", produces = "application/json")
+    @PostMapping(value = "/editFpdata")
+    public Object editFpdata(@RequestBody @Valid PbbdXgmNew pbbdXgmNew) {
+        // 校验参数
+        if (pbbdXgmNew == null) {
+            return "params is not null";
+        }
+        xgmSbhyfpService.editFpdata(pbbdXgmNew);
+        return "修改成功";
+    }
+
+    @ApiOperation(value = "删除小规模发票数据", notes = "删除小规模发票数据", produces = "application/json")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "djxh", value = "登记序号", dataType = "string", paramType = "query", defaultValue = "10114403000026000891"),
+            @ApiImplicitParam(name = "sssqq", value = "所属期起", dataType = "String", paramType = "query", defaultValue = "2019-01-11"),
+            @ApiImplicitParam(name = "sssqz", value = "所属期止", dataType = "String", paramType = "query", defaultValue = "2019-01-11")
+    })
+    @DeleteMapping(value = "/deleteFpdata")
+    public Object deleteFpdata(@RequestParam("djxh") String djxh,@RequestParam("sssqq")  String sssqq,@RequestParam("sssqz")  String sssqz) {
+        // 校验参数
+        xgmSbhyfpService.deleteFpdata(djxh,sssqq,sssqz);
+        return "删除成功";
+    }
+
+
+
+
+
+
+
+
+
 
     @ApiOperation(value = "小规模申报核定信息", notes = "小规模申报核定信息", produces = "application/json")
     @ApiImplicitParams({
